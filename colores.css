@@ -1,0 +1,52 @@
+div.logo img{
+	width:120px; 
+	margin-top:5px;
+	border-radius:5px;
+
+}
+div.menu{
+    background:#500805;
+	position:absolute; 
+	margin-top:60px; 
+	width:10%;
+	height:100%;
+	border-right:solid 3px #537072;	
+	font-size: medium;
+	}
+div.menu li{
+	height: 10px;
+	margin-top:100px;
+	list-style: none;
+
+}
+div.menu a{
+	text-decoration:none;
+    background:#c9d1c8;
+	color:#785a46;
+	padding:10px 10px 5px 10px;  
+	border:solid 5px #9d331f;
+	border-radius:10px;
+	box-shadow:0px 5px 5px  #bc6d4f;
+}
+
+div.menu a:hover{
+	color:#500805; 
+}
+h1{
+    background:#500805;
+	color:#1e0000;		
+	text-align:center;
+	padding:10px 700px 0px 10px; 
+	margin:20px 0px 0px 0px;    
+}
+div.are_trabajo{
+    margin-left:70px;
+   	text-decoration:none;
+    background:#c9d1c8;
+	color:#785a46;
+	padding:10px 10px 5px 10px;  
+	border:solid 5px #9d331f;
+	border-radius:10px;
+	box-shadow:0px 5px 5px  #bc6d4f;
+}
+
