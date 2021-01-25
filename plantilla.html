@@ -128,6 +128,24 @@
 			</div>	
 			</div>	
 
+			<div class="col-md-6">
+				<h2>FORMULARIO</h2>
+				<table class="table">
+					<tr>
+						<th>#</th>
+						<th>Apellidos</th>
+						<th>Nombres</th>
+						<th>Correo</th>
+						<th>Teléfono</th>
+						<th>Ciudad</th>
+						<th>Sexo</th>
+					</tr>
+					<tbody id="tbody_datos">
+						
+					</tbody>
+				</table>
+			</div>
+
 
 		
 	</div>
@@ -247,6 +265,25 @@ function pluss(){
 
 <script type="text/javascript">
 //cuando cargue la pagina
+$(function(){
+	let c=0;
+	let row="";
+	datos.map( (fila)=> {
+	c++;
+	row+=`<tr>
+		<td>${c}</td>
+		<td>${fila.apellidos}</td>
+		<td>${fila.nombres}</td>
+		<td>${fila.correo}</td>
+		<td>${fila.telefono}</td>
+		<td>${fila.ciudad}</td>
+		<td>${fila.sexo}</td>
+		</tr>` 
+	});
+	$("#tbody_datos").html(row);
+
+})
+
 $(document).on("click","#btn_registrar",()=> {
 			//todo el codigo
 			let ap=$("#apellidos").val();
@@ -281,6 +318,7 @@ $(document).on("click","#btn_registrar",()=> {
 				return false;
 
 			}
+
 			alerta('success','Datos registrados correctamente','bottom-end');
 			});
 			//Validar alertas
@@ -291,8 +329,16 @@ $(document).on("click","#btn_registrar",()=> {
   			title: title,
   			showConfirmButton: false,
   			timer: 1500
+  			
 			})
 			}
+			const datos=[
+			{apellidos:'Arias',nombres:'Andrea',correo:'andre123@gmail.com',telefono:'0962120101',ciudad:'Quito',sexo:'Mujer'},
+			{apellidos:'Vinueza',nombres:'Daniela',correo:'danielita123@gmail.com',telefono:'0962120120',ciudad:'Quito',sexo:'Mujer'},
+			{apellidos:'Paredes',nombres:'Oliver',correo:'oliver123@gmail.com',telefono:'0962120130',ciudad:'Quito',sexo:'Hombre'},
+
+
+			];
 
 
 
