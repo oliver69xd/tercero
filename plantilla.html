@@ -128,7 +128,7 @@
 			</div>	
 			</div>	
 
-			<div class="col-md-6">
+			<div class="col-lf-6">
 				<h2>FORMULARIO</h2>
 				<table class="table">
 					<tr>
@@ -266,6 +266,10 @@ function pluss(){
 <script type="text/javascript">
 //cuando cargue la pagina
 $(function(){
+	
+	traer_datos();
+
+
 	let c=0;
 	let row="";
 	datos.map( (fila)=> {
@@ -278,6 +282,8 @@ $(function(){
 		<td>${fila.telefono}</td>
 		<td>${fila.ciudad}</td>
 		<td>${fila.sexo}</td>
+		<td><button>Eliminar</button></td>
+		<td><button>Editar</button></td>
 		</tr>` 
 	});
 	$("#tbody_datos").html(row);
@@ -339,6 +345,18 @@ $(document).on("click","#btn_registrar",()=> {
 
 
 			];
+			const traer_datos=()=>{
+				$.ajax({
+					url:'./clases/acciones.php',
+					method:'GET',
+					beforeSend:function(){
+
+					},
+					success:function(datos){
+						alert(datos);
+					},
+				});
+			}
 
 
 
