@@ -280,7 +280,7 @@ $(function(){
 		<td>${fila.nombres}</td>
 		<td>${fila.correo}</td>
 		<td>${fila.telefono}</td>
-		<td>${fila.ciudad}</td>
+		<td>${fila.ciudad}</text-danger>
 		<td>${fila.sexo}</td>
 		<td><button>Eliminar</button></td>
 		<td><button>Editar</button></td>
@@ -349,10 +349,10 @@ $(document).on("click","#btn_registrar",()=> {
 				$.ajax({
 					url:'./clases/acciones.php',
 					method:'GET',
-					beforeSend:function(){
+					beforeSend:()=>{
 
 					},
-					success:function(datos){
+					success:(datos)=>{
 						alert(datos);
 					},
 				});
