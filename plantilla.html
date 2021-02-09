@@ -265,30 +265,34 @@ function pluss(){
 
 <script type="text/javascript">
 //cuando cargue la pagina
-$(function(){
+// $(function(){
+// 	let usuarios=traer_datos();
+// 	usuarios.map((item)=>{
+
+// 	})
 	
-	traer_datos();
+traer_datos();
 
 
-	let c=0;
-	let row="";
-	datos.map( (fila)=> {
-	c++;
-	row+=`<tr>
-		<td>${c}</td>
-		<td>${fila.apellidos}</td>
-		<td>${fila.nombres}</td>
-		<td>${fila.correo}</td>
-		<td>${fila.telefono}</td>
-		<td>${fila.ciudad}</text-danger>
-		<td>${fila.sexo}</td>
-		<td><button>Eliminar</button></td>
-		<td><button>Editar</button></td>
-		</tr>` 
-	});
-	$("#tbody_datos").html(row);
+// 	let c=0;
+// 	let row="";
+// 	datos.map( (fila)=> {
+// 	c++;
+// 	row+=`<tr>
+// 		<td>${c}</td>
+// 		<td>${fila.apellidos}</td>
+// 		<td>${fila.nombres}</td>
+// 		<td>${fila.correo}</td>
+// 		<td>${fila.telefono}</td>
+// 		<td>${fila.ciudad}</text-danger>
+// 		<td>${fila.sexo}</td>
+// 		<td><button>Eliminar</button></td>
+// 		<td><button>Editar</button></td>
+// 		</tr>` 
+// 	});
+// 	$("#tbody_datos").html(row);
 
-})
+// })
 
 $(document).on("click","#btn_registrar",()=> {
 			//todo el codigo
