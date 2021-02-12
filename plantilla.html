@@ -21,8 +21,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<!-- JQUERY -->
 	<script type="text/javascript" src="jquery/original.js"></script>
+
 	<!-- SWEETALERT2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 
 
 	<title>Document</title>
@@ -133,12 +136,15 @@
 				<table class="table">
 					<tr>
 						<th>#</th>
-						<th>Apellidos</th>
-						<th>Nombres</th>
-						<th>Correo</th>
-						<th>Teléfono</th>
-						<th>Ciudad</th>
-						<th>Sexo</th>
+						<th>apellido</th>
+						<th>nombre</th>
+						<th>ciudad</th>
+						<th>direccion</th>
+						<th>telefono</th>
+						<th>correo</th>
+						<th>sexo</th>
+						<th>usuario</th>
+						<th>contraseña</th>
 					</tr>
 					<tbody id="tbody_datos">
 						
@@ -264,14 +270,15 @@ function pluss(){
 </script> -->
 
 <script type="text/javascript">
-//cuando cargue la pagina
-// $(function(){
+
+$(function(){
+	traer_datos();
 // 	let usuarios=traer_datos();
 // 	usuarios.map((item)=>{
 
-// 	})
+})
 	
-traer_datos();
+
 
 
 // 	let c=0;
@@ -356,10 +363,29 @@ $(document).on("click","#btn_registrar",()=> {
 					beforeSend:()=>{
 
 					},
-					success:(datos)=>{
-						alert(datos);
-					},
+					success:(result)=>{
+
+						const usuarios=$.parseJSON(result);
+						let row="";
+						usuarios.map( (item)=>{
+							row+=`<tr> <td></td> 
+								<td>${item[1]}</td> 
+								<td>${item[2]}</td> 
+								<td>${item[3]}</td> 
+								<td>${item[4]}</td> 
+								<td>${item[5]}</td> 
+								<td>${item[6]}</td> 
+								<td>${item[7]}</td> 
+								<td>${item[8]}</td> 
+								<td>${item[9]}</td> 
+								<td> <i class='btn btn-info btn-xs' >...</i> </td>
+								</tr>`;
+						})
+						$("#tbody_datos").html(row);
+					
+					}
 				});
+			
 			}
 
 

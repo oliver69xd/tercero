@@ -1,12 +1,13 @@
-<?php
-$conexion = new mysqli("127.0.0.1","root","","tercero");
+<?php 
+class Conexion{
+	var $con;
+	function __construct() 
+	{
 
-$sql="SELECT * FROM usuarios";
-
-$consulta=$conexion->query($sql);
-foreach ($usuarios as $us ) {
-	print_r($us);
+		$this->con = new mysqli("127.0.0.1","root","","tercero");
+	}
+ 
 }
-// $usuarios = $consulta->fetch_array();
-// print_r($usuarios);
-// ?>
+
+
+?>
