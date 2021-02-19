@@ -87,6 +87,27 @@
 				<label for="">Telefono <i class="text-danger">*</i> <small class="text-muted" id="msj_telefono"> 10 caracteres</small></label>
 				<input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ej:0962120100">		
 			</div>		
+			</div>	
+
+			<div class="row">
+			<div class="col-md-4">
+				<label for="">Direccion <i class="text-danger">*</i> <small class="text-muted" id="msj_direccion"> 10 caracteres</small></label>
+				<input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ej:santo tomas">		
+			</div>		
+			</div>		
+
+			<div class="row">
+			<div class="col-md-4">
+				<label for="">Username <i class="text-danger">*</i> <small class="text-muted" id="msj_username"> 5 caracteres</small></label>
+				<input type="text" name="username" class="form-control" id="username" placeholder="Ej:tomas69">		
+			</div>		
+			</div>				
+
+			<div class="row">
+			<div class="col-md-4">
+				<label for="">Password <i class="text-danger">*</i> <small class="text-muted" id="msj_password"> 5 caracteres</small></label>
+				<input type="password" name="password" class="form-control" id="password" placeholder="Ej:12345">		
+			</div>		
 			</div>			
 
 			<div class="row">
@@ -111,9 +132,7 @@
 					<!-- si no se pone los nombre se selecciona todo y son como equipos cada uno -->
 						
 			</div>		
-			</div>		
-
-	
+			</div>	
 
 			<div class="row">
 			<div class="col-md-4">
@@ -292,7 +311,7 @@ $(function(){
 // 		<td>${fila.correo}</td>
 // 		<td>${fila.telefono}</td>
 // 		<td>${fila.ciudad}</text-danger>
-// 		<td>${fila.sexo}</td>
+// 		<td>${firela.sexo}</td>
 // 		<td><button>Eliminar</button></td>
 // 		<td><button>Editar</button></td>
 // 		</tr>` 
@@ -307,6 +326,50 @@ $(document).on("click","#btn_registrar",()=> {
 			let nm=$("#nombres").val();
 			let cr=$("#correo").val();
 			let tl=$("#telefono").val();
+			let dir=$("#direccion").val();
+			let us=$("#username").val();
+			let ps=$("#password").val();
+
+			//validar datos iniciales
+
+			if(ap.trim().length<5){
+				$("#msj_apellidos").text("Error: Debe escribir minimo 6 caracteres");
+				$("#msj_apellidos").attr("class","text-danger");
+			return false;
+
+			} 			
+			if(nm.trim().length<5){
+				$("#msj_nombres").text("Error: Debe escribir minimo 6 caracteres");
+				$("#msj_nombres").attr("class","text-danger");
+			return false;
+			} 			
+			if(cr.trim().length<5){
+				$("#msj_correo").text("Error: Debe escribir minimo 6 caracteres");
+				$("#msj_correo").attr("class","text-danger");
+			return false;
+			} 			
+			if(tl.trim().length<5){
+				$("#msj_telefono").text("Error: Debe escribir minimo 6 caracteres");
+				$("#msj_telefono").attr("class","text-danger");
+			return false;
+			} 			
+
+			if(dir.trim().length<5){
+				$("#msj_direccion").text("Error: Debe escribir minimo 5 caracteres");
+				$("#msj_direccion").attr("class","text-danger");
+			return false;
+			} 		
+			if(us.trim().length<5){
+				$("#msj_username").text("Error: Debe escribir minimo 5 caracteres");
+				$("#msj_username").attr("class","text-danger");
+			return false;
+			} 		
+			if(ps.trim().length<5){
+				$("#msj_password").text("Error: Debe escribir minimo 5 caracteres");
+				$("#msj_password").attr("class","text-danger");
+			return false;
+			} 
+
 
 
 			//VALIDAR EL SEXO
@@ -335,6 +398,8 @@ $(document).on("click","#btn_registrar",()=> {
 				return false;
 
 			}
+			let datos=[ap,nm,cr,tl,dir,us,ps];
+			console.log(datos);
 
 			alerta('success','Datos registrados correctamente','bottom-end');
 			});
@@ -349,13 +414,7 @@ $(document).on("click","#btn_registrar",()=> {
   			
 			})
 			}
-			const datos=[
-			{apellidos:'Arias',nombres:'Andrea',correo:'andre123@gmail.com',telefono:'0962120101',ciudad:'Quito',sexo:'Mujer'},
-			{apellidos:'Vinueza',nombres:'Daniela',correo:'danielita123@gmail.com',telefono:'0962120120',ciudad:'Quito',sexo:'Mujer'},
-			{apellidos:'Paredes',nombres:'Oliver',correo:'oliver123@gmail.com',telefono:'0962120130',ciudad:'Quito',sexo:'Hombre'},
 
-
-			];
 			const traer_datos=()=>{
 				$.ajax({
 					url:'./clases/acciones.php',
@@ -466,10 +525,4 @@ $(document).on("click","#btn_registrar",()=> {
 </script>
 </html>
 
-<!-- NOTAS
-id=identificador unico
-name=indetificador de grupo
-class=indetificador de grupo(es utiliza para dar estilos)
 
-radio obligatorio name 
-para seleccionar solo una opcion  
