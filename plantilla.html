@@ -399,9 +399,10 @@ $(document).on("click","#btn_registrar",()=> {
 
 			}
 			let datos=[ap,nm,cr,tl,dir,us,ps];
-			console.log(datos);
+			//console.log(datos);
+			envio_datos(datos);
 
-			alerta('success','Datos registrados correctamente','bottom-end');
+			//alerta('success','Datos registrados correctamente','bottom-end');
 			});
 			//Validar alertas
 			const alerta=(icon,title,position)=>{
@@ -414,6 +415,8 @@ $(document).on("click","#btn_registrar",()=> {
   			
 			})
 			}
+
+
 
 			const traer_datos=()=>{
 				$.ajax({
@@ -445,6 +448,21 @@ $(document).on("click","#btn_registrar",()=> {
 					}
 				});
 			
+			}
+
+			const envio_datos=(datos)=>{
+				$.ajax({
+					url:'./clases/acciones.php',
+					method:'POST',
+					data:{datos:datos,op:1},
+					beforeSend:()=>{
+					},
+					success:(result)=>{
+						console.log(result);
+					}
+
+					})
+		
 			}
 
 
