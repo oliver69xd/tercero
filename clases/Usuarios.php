@@ -7,10 +7,28 @@ class Usuarios extends Conexion
 			return $this->con->query("SELECT * FROM usuarios");
 		}
     }
-    function inserta_usuario(){
+    function create_user($datos){
 		if($this->con){
-			return $this->con->query("INSERT INTO usuarios (id,apellidos,nombres,ciudad,direccion,telefono,correo,sexo,usuario,password) 
-									 VALUES (5,'morocho','dereck','quito','guamni','0965555555','dereck55@gmail.com','masculino','der','5555') ");
+			return $this->con->query("INSERT INTO usuarios (apellidos,
+															nombres,
+															correo,
+															telefono,
+															direccion,
+															ciudad,
+															sexo,
+															username,
+															password) 
+												VALUES (    '$datos[0]',
+														    '$datos[1]',
+															'$datos[2]',
+														    '$datos[3]',
+														    '$datos[4]',
+														    '$datos[5]',
+														    '$datos[6]',
+														    '$datos[7]',
+														    '$datos[8]'
+															)
+															");
 		}
 	}
 	function actualizar_usuario($ap,$nm,$cu,$dir,$tlf,$co,$sex,$us,$pss,$id){
