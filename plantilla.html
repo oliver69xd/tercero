@@ -125,9 +125,8 @@
 
 			<div class="row">
 			<div class="col-md-4">
-					<span>				Mujer:<input type="radio" name="sexo" value="mujer" class="obj_radio"></span>
-					<span class="ml-5">Hombre:<input type="radio" name="sexo" value="hombre" class="obj_radio"></span>
-					<span class="ml-5">  Otro:<input type="radio" name="sexo" value="otro" class="obj_radio"></span> 
+					<span>				Mujer:<input type="radio" name="sexo" id="M" value="mujer" class="obj_radio"></span>
+					<span class="ml-5">Hombre:<input type="radio" name="sexo" id="H" value="hombre" class="obj_radio"></span>
 					<!-- el namese pode para que no se selecione todos al mismo tiempo -->
 					<!-- si no se pone los nombre se selecciona todo y son como equipos cada uno -->
 						
@@ -324,7 +323,15 @@ $(document).on("click",".btn_editar",function(){
 		method:'POST',
 		data:{op:2,usu_id:usu_id},
 		success:(result)=>{
-			alert(result);
+			const usuario=$.parseJSON(result);
+			$("#apellidos").val(usuario[1]);
+			$("#nombres").val(usuario[2]);
+			$("#correo").val(usuario[3]);
+			$("#telefono").val(usuario[4]);
+			$("#direccion").val(usuario[5]);
+			$("#username").val(usuario[6]);
+			$("#password").val(usuario[7]);
+			$("#"+usuario[5]).prop("checked",true);
 			}
 	});   
 })

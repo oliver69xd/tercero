@@ -7,6 +7,13 @@ class Usuarios extends Conexion
 			return $this->con->query("SELECT * FROM usuarios");
 		}
     }
+
+    function listar_un_usuario($id){
+    	if($this->con){
+    		return $this->con->query("SELECT * FROM usuarios where id=$id");
+    	}
+    }
+
     function create_user($datos){
 		if($this->con){
 			return $this->con->query("INSERT INTO usuarios (apellidos,

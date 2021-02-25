@@ -15,7 +15,9 @@ if(isset($_POST['op'])){
 		break;
 		case 2;
 		//hacer una consulta de 1 solo usuario
-		echo "Consultar Usuario".$_POST['usu_id'];
+		//echo "Consultar Usuario".$_POST['usu_id'];
+		$usuario=mysqli_fetch_all( $Usuarios->listar_un_usuario($_POST['usu_id']) );
+		echo json_encode($usuario[0]);
 
 		break;
 		}
