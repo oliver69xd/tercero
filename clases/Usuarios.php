@@ -14,8 +14,6 @@ class Usuarios extends Conexion
 															correo,
 															telefono,
 															direccion,
-															ciudad,
-															sexo,
 															username,
 															password) 
 												VALUES (    '$datos[0]',
@@ -24,9 +22,7 @@ class Usuarios extends Conexion
 														    '$datos[3]',
 														    '$datos[4]',
 														    '$datos[5]',
-														    '$datos[6]',
-														    '$datos[7]',
-														    '$datos[8]'
+														    '$datos[6]'
 															)
 															");
 		}

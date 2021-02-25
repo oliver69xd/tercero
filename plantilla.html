@@ -24,8 +24,8 @@
 
 	<!-- SWEETALERT2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
+	<!-- ICONOS -->
+	<script src="https://kit.fontawesome.com/9efc39543f.js" crossorigin="anonymous"></script>
 
 
 	<title>Document</title>
@@ -157,11 +157,9 @@
 						<th>#</th>
 						<th>apellido</th>
 						<th>nombre</th>
-						<th>ciudad</th>
-						<th>direccion</th>
-						<th>telefono</th>
 						<th>correo</th>
-						<th>sexo</th>
+						<th>telefono</th>
+						<th>direccion</th>
 						<th>usuario</th>
 						<th>contraseña</th>
 					</tr>
@@ -319,6 +317,18 @@ $(function(){
 // 	$("#tbody_datos").html(row);
 
 // })
+$(document).on("click",".btn_editar",function(){
+	let usu_id=$(this).attr('usu_id');
+	$.ajax({
+		url:'./clases/acciones.php',
+		method:'POST',
+		data:{op:2,usu_id:usu_id},
+		success:(result)=>{
+			alert(result);
+			}
+	});   
+})
+
 
 $(document).on("click","#btn_registrar",()=> {
 			//todo el codigo
@@ -438,9 +448,8 @@ $(document).on("click","#btn_registrar",()=> {
 								<td>${item[5]}</td> 
 								<td>${item[6]}</td> 
 								<td>${item[7]}</td> 
-								<td>${item[8]}</td> 
-								<td>${item[9]}</td> 
-								<td> <i class='btn btn-info btn-xs' >...</i> </td>
+								<td> <i usu_id='${item[0]}' class='btn btn-info btn_editar fas fa-edit' >Editar</i></td>
+								<td> <i class="fas fa-trash" btn_edliminar></i></td>
 								</tr>`;
 						})
 						$("#tbody_datos").html(row);
