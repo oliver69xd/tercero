@@ -64,6 +64,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<label for="">Apellidos <i class="text-danger">*</i> <small class="text-muted" id="msj_apellidos">Minimo 6 caracteres</small></label>
+				<input type="hidden" id="usu_id">
 				<input type="text" name="apellidos" class="form-control" id="apellidos" placeholder="Ej:Paredes leon">		
 			</div>	
 			</div>	
@@ -289,33 +290,8 @@ function pluss(){
 
 $(function(){
 	traer_datos();
-// 	let usuarios=traer_datos();
-// 	usuarios.map((item)=>{
-
 })
 	
-
-
-
-// 	let c=0;
-// 	let row="";
-// 	datos.map( (fila)=> {
-// 	c++;
-// 	row+=`<tr>
-// 		<td>${c}</td>
-// 		<td>${fila.apellidos}</td>
-// 		<td>${fila.nombres}</td>
-// 		<td>${fila.correo}</td>
-// 		<td>${fila.telefono}</td>
-// 		<td>${fila.ciudad}</text-danger>
-// 		<td>${firela.sexo}</td>
-// 		<td><button>Eliminar</button></td>
-// 		<td><button>Editar</button></td>
-// 		</tr>` 
-// 	});
-// 	$("#tbody_datos").html(row);
-
-// })
 $(document).on("click",".btn_editar",function(){
 	let usu_id=$(this).attr('usu_id');
 	$.ajax({
@@ -325,6 +301,9 @@ $(document).on("click",".btn_editar",function(){
 		success:(result)=>{
 			const usuario=$.parseJSON(result);
 			$("#apellidos").val(usuario[1]);
+
+			$("#usu_id").val(usuario[0]);
+
 			$("#nombres").val(usuario[2]);
 			$("#correo").val(usuario[3]);
 			$("#telefono").val(usuario[4]);
@@ -333,12 +312,41 @@ $(document).on("click",".btn_editar",function(){
 			$("#password").val(usuario[7]);
 			$("#"+usuario[5]).prop("checked",true);
 			}
+
 	});   
+})
+
+$(document).on("click",".btn_eliminar",function(){
+	let usu_id=$(this).attr('usu_id');
+	$.ajax({
+		url:'./clases/acciones.php',
+		method:'POST',
+		data:{usu_id:usu_id,op:3},
+		beforeSend:()=>{
+			if(confirm("Esta seguro de eliminar?") ){
+				return true;
+			}else{
+				return false;
+			}
+		},
+		success:(result)=>{
+			if(result==0){
+				alert('Eliminado correctamente');
+				window.history.go(0);
+			}else{
+				alert('Error al eliminar');
+			}
+
+		}
+
+	})
 })
 
 
 $(document).on("click","#btn_registrar",()=> {
 			//todo el codigo
+			let id=$("#usu_id").val();
+
 			let ap=$("#apellidos").val();
 			let nm=$("#nombres").val();
 			let cr=$("#correo").val();
@@ -348,6 +356,8 @@ $(document).on("click","#btn_registrar",()=> {
 			let ps=$("#password").val();
 
 			//validar datos iniciales
+
+			
 
 			if(ap.trim().length<5){
 				$("#msj_apellidos").text("Error: Debe escribir minimo 6 caracteres");
@@ -415,7 +425,7 @@ $(document).on("click","#btn_registrar",()=> {
 				return false;
 
 			}
-			let datos=[ap,nm,cr,tl,dir,us,ps];
+			let datos=[ap,nm,cr,tl,dir,us,ps,id];
 			//console.log(datos);
 			envio_datos(datos);
 
@@ -455,8 +465,8 @@ $(document).on("click","#btn_registrar",()=> {
 								<td>${item[5]}</td> 
 								<td>${item[6]}</td> 
 								<td>${item[7]}</td> 
-								<td> <i usu_id='${item[0]}' class='btn btn-info btn_editar fas fa-edit' >Editar</i></td>
-								<td> <i class="fas fa-trash" btn_edliminar></i></td>
+								<td> <i usu_id='${item[0]}' class='btn btn-info btn_editar fas fa-edit' ></i></td>
+								<td> <i usu_id='${item[0]}' class="btn btn-danger btn_eliminar fas fa-trash"></i></td>
 								</tr>`;
 						})
 						$("#tbody_datos").html(row);

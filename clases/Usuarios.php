@@ -14,6 +14,20 @@ class Usuarios extends Conexion
     	}
     }
 
+    function modifica_usuario($datos){
+		if($this->con){
+			return $this->con->query("UPDATE usuarios set 
+										apellidos='$datos[0]',
+										nombres='$datos[1]',
+										correo='$datos[2]',
+										telefono='$datos[3]',
+										direccion='$datos[4]',
+										username='$datos[5]'
+										WHERE id=$datos[7]
+										");
+		}
+	}
+
     function create_user($datos){
 		if($this->con){
 			return $this->con->query("INSERT INTO usuarios (apellidos,
@@ -34,22 +48,13 @@ class Usuarios extends Conexion
 															");
 		}
 	}
-	function actualizar_usuario($ap,$nm,$cu,$dir,$tlf,$co,$sex,$us,$pss,$id){
+
+	function eliminar_usuario($usu_id){
 		if($this->con){
-			return $this->con->query("UPDATE usuarios set 
-										apellido='$ap',
-										nombre='$nm',
-										ciudad='$cu',
-										direccion='$dir',
-										telefono='$tlf',
-										correo='$co',
-										sexo='$sex',
-										usuario='$us',
-										password='$pss'
-										WHERE id=$id
-										");
+			return $this->con->query("DELETE FROM usuarios WHERE id=$usu_id");
 		}
 	}
+
 }
 // $Usuarios=new Usuarios(); $datos=$Usuarios->lista_usuarios();
 // var_dump($datos);
